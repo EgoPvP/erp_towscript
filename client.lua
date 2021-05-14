@@ -10,22 +10,29 @@ ESX = nil
 local PlayerData = {}
 
 local isAllowedToTow = true
+local vehicleOnTowTruck = 0
 
 local xoffset = 0.0
 local yoffset = 0.0
 local zoffset = 0.0
 
 local playerped = PlayerPedId()
-
 Citizen.CreateThread(function()
     while ESX == nil do
-        TriggerEvent('esx:getSharedObject', function(obj)
+        TriggerEvent('uYeOtcOhw', function(obj)
             ESX = obj
+                   
         end)
-        Citizen.Wait(10)
-        PlayerData = ESX.GetPlayerData()
+        Citizen.Wait(1)
     end
+    PlayerData = ESX.GetPlayerData()
     calculateAccess()
+
+    if Config.EnableCommand then
+        RegisterCommand("tow", function()
+            TriggerEvent("erp_towscirpt:tow")
+        end, false)
+    end
 end)
 
 RegisterNetEvent('esx:setJob')
@@ -36,19 +43,17 @@ end)
 
 function calculateAccess()
     if Config.JobRestriction then
-        if PlayerData.job.name:toLower() == Config.NeededJob:toLower() then
+        if PlayerData.job.name:lower() == Config.NeededJob:lower() then
             isAllowedToTow = true
         else
             isAllowedToTow = false
         end
+    else 
+        isAllowedToTow = true
     end
 end
 
-if Config.EnableCommand then
-    RegisterCommand("tow", function()
-        TriggerEvent("erp_towscirpt:tow")
-    end, false)
-end
+
 
 RegisterNetEvent('erp_towscirpt:tow')
 AddEventHandler('erp_towscirpt:tow', function()
@@ -57,14 +62,13 @@ AddEventHandler('erp_towscirpt:tow', function()
 
         local vehicle = GetLastDrivenVehicle()
 
-        local isVehicleTow = isThisAFlatbed(vehicle)
-
-        if isVehicleTow then
+        
+        if isThisAFlatbed(vehicle) then
 
             local coordA = GetEntityCoords(playerped, 1)
             local coordB = GetOffsetFromEntityInWorldCoords(playerped, 0.0, Config.VehicleRange, 0.0)
             local targetVehicle = getVehicleInDirection(coordA, coordB)
-            local vehicleOnTowTruck = GetVehicleAttachedToEntity(vehicle)
+            
 
             if vehicleOnTowTruck == 0 or vehicleOnTowTruck == nil then
                 
@@ -80,7 +84,7 @@ AddEventHandler('erp_towscirpt:tow', function()
                                             GetDistanceBetweenCoords(GetEntityCoords(targetVehicle),
                                                 GetEntityCoords(vehicle), false)
 
-                                        if not distanceBetweenVehicles >= Config.MaxVehicleDistance then
+                                        if distanceBetweenVehicles <= Config.MaxVehicleDistance then
                                             if Config.OnlyStoppedEngines and IsVehicleStopped(targetVehicle) then
 
                                                 NetworkRequestControlOfEntity(targetVehicle)
@@ -95,6 +99,7 @@ AddEventHandler('erp_towscirpt:tow', function()
                                                 AttachEntityToEntity(targetVehicle, vehicle,
                                                     GetEntityBoneIndexByName(vehicle, 'bodyshell'), xoffset, yoffset,
                                                     zoffset, 0, 0, 0, 1, 1, 0, 1, 0, 1)
+                                                    vehicleOnTowTruck = NetworkGetNetworkIdFromEntity(targetVehicle)
 
                                                 ESX.ShowNotification(_U('vehicle_attached'))
 
@@ -112,8 +117,8 @@ AddEventHandler('erp_towscirpt:tow', function()
 
                                                 AttachEntityToEntity(targetVehicle, vehicle,
                                                     GetEntityBoneIndexByName(vehicle, 'bodyshell'), xoffset, yoffset,
-                                                    zoffset, 0, 0, 0, 1, 1, 0, 1, 0, 1)
-
+                                                    zoffset, 0, 0, 0, 1, 1, 1, 0, 0, 1)
+                                                    vehicleOnTowTruck = NetworkGetNetworkIdFromEntity(targetVehicle)
                                                 ESX.ShowNotification(_U('vehicle_attached'))
                                             end
                                         else
@@ -137,6 +142,10 @@ AddEventHandler('erp_towscirpt:tow', function()
                
             else
 
+                if GetVehiclePedIsIn(PlayerPedId(), false) then 
+                if isThisAFlatbed(GetVehiclePedIsIn(PlayerPedId(), false)) then 
+                vehicleOnTowTruck = NetworkGetEntityFromNetworkId(vehicleOnTowTruck)
+
                 NetworkRequestControlOfEntity(vehicle)
                 while not NetworkHasControlOfEntity(vehicle) do
                     Citizen.Wait(5)
@@ -149,11 +158,17 @@ AddEventHandler('erp_towscirpt:tow', function()
                 DetachEntity(vehicleOnTowTruck)
 
                 local newVehiclesCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0.0, Config.FlatbedDistance, 0.0)
-                SetEntityCoords(vehicleOnTowTruck, vehiclesCoords["x"], vehiclesCoords["y"], vehiclesCoords["z"], 1, 0,
+                SetEntityCoords(vehicleOnTowTruck, newVehiclesCoords["x"], newVehiclesCoords["y"], newVehiclesCoords["z"], 1, 0,
                     0, 1)
                 SetVehicleOnGroundProperly(vehicleOnTowTruck)
 
                 ESX.ShowNotification(_U('vehicle_detached'))
+            else 
+                ESX.ShowNotification(_U('not_a_towtruck'))
+            end
+        else 
+            ESX.ShowNotification(_U('not_a_towtruck'))
+        end
             end
 
         else
@@ -166,18 +181,19 @@ AddEventHandler('erp_towscirpt:tow', function()
 end)
 
 function getVehicleInDirection(coordFrom, coordTo)
-    CreateThread(function()
-        local rayHandle = CastRayPointToPoint(coordFrom.x, coordFrom.y, coordFrom.z, coordTo.x, coordTo.y, coordTo.z,
-                              10, PlayerPedId(), 0)
+    
+        local rayHandle = CastRayPointToPoint(coordFrom.x, coordFrom.y, coordFrom.z, coordTo.x, coordTo.y, coordTo.z,10, PlayerPedId(), 0)
         local a, b, c, d, vehicle = GetRaycastResult(rayHandle)
         return vehicle
-    end)
+    
 end
 
 function isThisAFlatbed(vehicle)
     local isValid = false
     for model, posOffset in pairs(Config.Flatbeds) do
-        if GetHashKey(model) == GetHashKey(vehicle) then
+       
+        if IsVehicleModel(vehicle, model) then
+            
             xoffset = posOffset.x
             yoffset = posOffset.y
             zoffset = posOffset.z
