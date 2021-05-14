@@ -66,70 +66,85 @@ AddEventHandler('erp_towscirpt:tow', function()
             local coordA = GetEntityCoords(playerped, 1)
             local coordB = GetOffsetFromEntityInWorldCoords(playerped, 0.0, Config.VehicleRange, 0.0)
             local targetVehicle = getVehicleInDirection(coordA, coordB)
+            local vehicleOnTowTruck = GetVehicleAttachedToEntity(vehicle)
 
-            if targetVehicle ~= 0 and targetVehicle ~= nil then
-                if not isThisVehicleBlacklisted(targetVehicle) then
-                    if not IsEntityUpsidedown(targetVehicle) then 
-                           
+            if vehicle == 0 or vehicle == nil then
+                if targetVehicle ~= 0 and targetVehicle ~= nil then
+                    if vehicle ~= targetVehicle then
+                        if not isThisVehicleBlacklisted(targetVehicle) then
+                            if not IsEntityUpsidedown(targetVehicle) then
+                                if GetPedInVehicleSeat(targetVehicle, -1) == 0 and GetPedInVehicleSeat(targetVehicle, 0) ==
+                                    0 and GetPedInVehicleSeat(targetVehicle, 1) == 0 and
+                                    GetPedInVehicleSeat(targetVehicle, 2) == 0 then
+                                    local distanceBetweenVehicles =
+                                        GetDistanceBetweenCoords(GetEntityCoords(targetVehicle),
+                                            GetEntityCoords(vehicle), false)
 
-                    else 
-ESX.ShowNotification(_U('vehicle_flipped'))
-                    end
-                else
-                    ESX.ShowNotification(_U('vehicle_blacklisted'))
-                end
-            else
-                ESX.ShowNotification(_U('no_vehicle_found'))
-            end
+                                    if not distanceBetweenVehicles >= Config.MaxVehicleDistance then
+                                        if Config.OnlyStoppedEngines and IsVehicleStopped(targetVehicle) then
 
-            if currentlyTowedVehicle == nil then
+                                            NetworkRequestControlOfEntity(targetVehicle)
+                                            while not NetworkHasControlOfEntity(targetVehicle) do
+                                                Citizen.Wait(5)
+                                            end
+                                            NetworkRequestControlOfEntity(vehicle)
+                                            while not NetworkHasControlOfEntity(vehicle) do
+                                                Citizen.Wait(5)
+                                            end
 
-                local targetVehicleLocation = GetEntityCoords(targetVehicle, true)
-                local towTruckVehicleLocation = GetEntityCoords(vehicle, true)
-                local distanceBetweenVehicles = GetDistanceBetweenCoords(targetVehicleLocation, towTruckVehicleLocation,
-                                                    false)
-                -- print(tostring(distanceBetweenVehicles)) -- debug only
-                -- Distance allowed (in meters) between tow truck and the vehicle to be towed			
-                if distanceBetweenVehicles > 12.0 then
-                    ShowNotification("So lange Arme habe ich nun auch wieder nicht...")
-                else
-                    local targetModelHash = GetEntityModel(targetVehicle)
-                    -- Check to make sure the target vehicle is allowed to be towed (see settings at lines 8-12)
-                    if not ((not allowTowingBoats and IsThisModelABoat(targetModelHash)) or
-                        (not allowTowingHelicopters and IsThisModelAHeli(targetModelHash)) or
-                        (not allowTowingPlanes and IsThisModelAPlane(targetModelHash)) or
-                        (not allowTowingTrains and IsThisModelATrain(targetModelHash)) or
-                        (not allowTowingTrailers and isTargetVehicleATrailer(targetModelHash))) then
-                        if not IsPedInAnyVehicle(playerped, true) then
-                            --  local networkId = NetworkGetNetworkIdFromEntity(targetVehicle)
-                            --  SetNetworkIdCanMigrate(networkId, true)
-                            if vehicle ~= targetVehicle and IsVehicleStopped(vehicle) then
-                                -- TriggerEvent('chatMessage', '', {255,255,255}, xoff .. ' ' .. yoff .. ' ' .. zoff) -- debug line
-                                NetworkRequestControlOfEntity(targetVehicle)
-                                while not NetworkHasControlOfEntity(targetVehicle) do
-                                    Citizen.Wait(5)
+                                        elseif Config.OnlyStoppedEngines and not IsVehicleStopped(targetVehicle) then
+                                            ESX.ShowNotification(_U('engine_not_stopped'))
+                                        else
+
+                                        end
+                                    else
+                                        ESX.ShowNotification(_U('vehicle_to_far_away'))
+                                    end
+                                else
+                                    ESX.ShowNotification(_U('vehicle_not_empty'))
                                 end
-                                NetworkRequestControlOfEntity(vehicle)
-                                while not NetworkHasControlOfEntity(vehicle) do
-                                    Citizen.Wait(5)
-                                end
-                                AttachEntityToEntity(targetVehicle, vehicle,
-                                    GetEntityBoneIndexByName(vehicle, 'bodyshell'), 0.0 + xoff, -1.5 + yoff, 0.0 + zoff,
-                                    0, 0, 0, 1, 1, 0, 1, 0, 1)
-                                currentlyTowedVehicle = NetworkGetNetworkIdFromEntity(targetVehicle)
-                                ShowNotification("Fahrzeug aufgeladen")
-
                             else
-                                ShowNotification("Soll ich Luft abladen oder?")
+                                ESX.ShowNotification(_U('vehicle_flipped'))
                             end
                         else
-                            ShowNotification(
-                                "Ok, So extrem lange habe habe ich nicht, um bis nach hinten greifen zu können...")
+                            ESX.ShowNotification(_U('vehicle_blacklisted'))
                         end
                     else
-                        ShowNotification(
-                            "Hol mal 200 Mann her, dann heben wir das Auto darauf, oder wie stell ich mir das gerade vor ohne Seilwinde?")
+                        ESX.ShowNotification(_U('cant_tow_yourself'))
                     end
+                else
+                    ESX.ShowNotification(_U('no_vehicle_found'))
+                end
+            else
+
+                -- detach vehicle!
+            end
+            if currentlyTowedVehicle == nil then
+
+                -- print(tostring(distanceBetweenVehicles)) -- debug only
+                -- Distance allowed (in meters) between tow truck and the vehicle to be towed			
+
+                -- Check to make sure the target vehicle is allowed to be towed (see settings at lines 8-12)
+
+                --  local networkId = NetworkGetNetworkIdFromEntity(targetVehicle)
+                --  SetNetworkIdCanMigrate(networkId, true)
+                if vehicle ~= targetVehicle and IsVehicleStopped(vehicle) then
+                    -- TriggerEvent('chatMessage', '', {255,255,255}, xoff .. ' ' .. yoff .. ' ' .. zoff) -- debug line
+                    NetworkRequestControlOfEntity(targetVehicle)
+                    while not NetworkHasControlOfEntity(targetVehicle) do
+                        Citizen.Wait(5)
+                    end
+                    NetworkRequestControlOfEntity(vehicle)
+                    while not NetworkHasControlOfEntity(vehicle) do
+                        Citizen.Wait(5)
+                    end
+                    AttachEntityToEntity(targetVehicle, vehicle, GetEntityBoneIndexByName(vehicle, 'bodyshell'),
+                        0.0 + xoff, -1.5 + yoff, 0.0 + zoff, 0, 0, 0, 1, 1, 0, 1, 0, 1)
+                    currentlyTowedVehicle = NetworkGetNetworkIdFromEntity(targetVehicle)
+                    ShowNotification("Fahrzeug aufgeladen")
+
+                else
+                    ShowNotification("Soll ich Luft abladen oder?")
                 end
 
             else

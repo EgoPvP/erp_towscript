@@ -19,6 +19,8 @@ Config.JobRestriction = 'false' -- Should the Tow Command & Event be restricted 
 Config.NeededJob = 'mechanic' -- Which Jobs should be allowed to Tow a Vehicle via Command/Event  !! ONLY WORKS WHEN "JobRestriction = true" !!
 Config.EnableCommand = true -- Enable or disable Towing a Vehicle via command  true = enabled  | false = disabled
 Config.VehicleRange = 10.0 -- Which range should be checked for checking for towable vehicles when trying to tow one
+Config.MaxVehicleDistance = 12.0 -- How far can a Vehicle be away from the Towtruck to still be loaded onto it (dont make it to high or it wont be anywhere near reality!)
+Config.OnlyStoppedEngines = true -- Should the engine of the vehicle you want to tow be running or not when trying to tow it.  true = Only allow stopped Vehicles | false = Allow started & stopped engines
 
 Config.Flatbeds= { -- The Vehicle (spawn-names) of your Flatbed-Vehicles / cars which can load other Vehicles on them.  X, Y, Z - Where should the Vehicle be attached to the Tow-Truck? x = left/right, y = forwards/backwards, z = up/down
     ['flatbed'] = {x = 0.0, y = -0.85, z = 1.25} -- default GTA V flatbed
