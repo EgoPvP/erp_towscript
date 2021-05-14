@@ -1,26 +1,11 @@
 fx_version 'adamant'
 
+author '! 1« NoobKeks_TV »#1337'
+description 'Top quality Tow-Scirpt'
 game 'gta5'
 
-server_script {
-    '@mysql-async/lib/MySQL.lua',
-    "server/main.lua"
-}
 client_script {
-    "client/main.lua",
-    "gz.lua"
+    '@es_extended/locale.lua',
+    "client.lua",
+    "config.lua"
 }
-
-
-ui_page('html/ui.html')
-
-files {
-    'html/ui.html',
-    'html/script.js',
-    'html/main.css'
-}
-exports {
-    'hasSkillLevel',
-    'getSkillLevel'
-}
-client_script "file_WoHzs.lua"

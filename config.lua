@@ -15,7 +15,6 @@
 Config = {}
 
 Config.Locale = 'de' -- Change to your preferred Language (de, en)
-Config.YourFramework = 'ESX' -- Which Framework are you using  -> To get the Player's Job (Available: ESX)  (more following soon!)
 Config.JobRestriction = 'false' -- Should the Tow Command & Event be restricted to Players with a specific Job?  true = restricted   | fale = not restricted
 Config.NeededJob = 'mechanic' -- Which Jobs should be allowed to Tow a Vehicle via Command/Event  !! ONLY WORKS WHEN "JobRestriction = true" !!
 Config.EnableCommand = true -- Enable or disable Towing a Vehicle via command  true = enabled  | false = disabled
