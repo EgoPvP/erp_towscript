@@ -84,7 +84,7 @@ AddEventHandler('erp_towscirpt:tow', function()
                                             GetDistanceBetweenCoords(GetEntityCoords(targetVehicle),
                                                 GetEntityCoords(vehicle), false)
 
-                                        if distanceBetweenVehicles <= Config.MaxVehicleDistance then
+                                        if distanceBetweenVehicles <= Config.VehicleRange then
                                             if Config.OnlyStoppedEngines and IsVehicleStopped(targetVehicle) then
 
                                                 NetworkRequestControlOfEntity(targetVehicle)
