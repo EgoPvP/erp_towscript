@@ -39,6 +39,7 @@ If you dont want to use the `/tow` or you simply want to add a button into your 
 `TriggerEvent('erp_towscirpt:tow')`
 
 ## Support
+If you need any kind of Support, feel free to open an Issue.
 
 Discord - https://discord.gg/6jsHUVMh8G
 
