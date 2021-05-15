@@ -16,7 +16,7 @@ This Script has many many Options for you to Change the behaivour of the Tow-Tru
  - de - German | Done by me 
  - en - Englisch | Done by me 
  - nl - Dutch | Thanks to [@Jaccosf](https://github.com/Jaccosf)
- - tr - Turkish | Thanks to [@]
+ - tr - Turkish | Thanks to @Wizley#3099
 
 If you want to help translate this Script, feel free to do a PR :)
 
