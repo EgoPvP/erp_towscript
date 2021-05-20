@@ -3,6 +3,13 @@ Highly Customisable and top working Vehicle Towing Script for FiveM
 
 This Script has many many Options for you to Change the behaivour of the Tow-Truck & does work in latest FiveM builds even after all the vehicle entity changes.
 
+
+** UPDATE AVAILABLE - NOW WORKING FOR SHURE! ** 
+
+Sorry guys, accidentally uploaded my test version isntead the one which was supposed to go live.
+Thanks to [@0pax](https://github.com/0pax) for pointing this out!
+
+
 ## How to Install?
 - Download the latest Release of erp_towscript
 - Copy the Folder into your ressources/ folder
@@ -11,6 +18,10 @@ This Script has many many Options for you to Change the behaivour of the Tow-Tru
 - Change your prefered Language in the "config.lua" file
 - Change other stuff in the "config.lua" file to your preffered settings
 - Have fun using the Script :) 
+
+## Dependencies
+
+* es_extended - 1.x
 
 ## Language Support
  - de - German | Done by me 
@@ -37,6 +48,11 @@ TowBlacklist | A List of vehicles not allowed to be Towed (eg. mule, monstertruc
 If you dont want to use the `/tow` or you simply want to add a button into your Job menue to Tow a Vehicle, you can Trigger the Script's own event for that like this:
 
 `TriggerEvent('erp_towscirpt:tow')`
+
+## Does this generate Lag?
+Since i got many requests on "Does this Script generate lag / how is its CPU time on resmon" 
+i checked it and it was as i expected it: 0,00ms!
+![image|690x12](https://forum.cfx.re/uploads/default/original/4X/a/4/2/a425a7a66c017cb456e93db9b2e145e0f9d4bc47.png)
 
 ## Support
 If you need any kind of Support, feel free to open an Issue.
