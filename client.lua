@@ -19,7 +19,7 @@ local zoffset = 0.0
 local playerped = PlayerPedId()
 Citizen.CreateThread(function()
     while ESX == nil do
-        TriggerEvent('uYeOtcOhw', function(obj)
+        TriggerEvent('esx:getSharedObject', function(obj)
             ESX = obj
                    
         end)
