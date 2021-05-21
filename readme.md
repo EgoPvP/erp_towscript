@@ -28,6 +28,7 @@ Thanks to [@0pax](https://github.com/0pax) for pointing this out!
  - en - Englisch | Done by me 
  - nl - Dutch | Thanks to [@Jaccosf](https://github.com/Jaccosf)
  - tr - Turkish | Thanks to @Wizley#3099
+ - pt - Portuguese | Thanks to [@coentro](https://github.com/coentro)
 
 If you want to help translate this Script, feel free to do a PR :)
 
