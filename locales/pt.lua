@@ -1,4 +1,4 @@
-Locales['en'] = {
+Locales['pt'] = {
     ['vehicle_attached'] = '~g~Veículo atrelado',
     ['vehicle_detached'] = '~r~Veículo retirado do reboque',
     ['engine_not_stopped'] = '~o~O motor encontra-se ligado!',
