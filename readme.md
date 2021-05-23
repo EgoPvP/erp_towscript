@@ -57,9 +57,9 @@ i checked it and it was as i expected it: 0,00ms!
 
 ## Other Scripts
 
-[erp_antifalldown](https://github.com/EgoPvP/erp_antifalldown) - Stop your Player from falling into the dark void.
-[SaltyNUI](https://github.com/EgoPvP/SaltyNUI) - Discourage Users without Temspeak running when using SaltyChat!
-[sitdown](https://github.com/EgoPvP/sitdown) - Sitting made easy!
+- [erp_antifalldown](https://github.com/EgoPvP/erp_antifalldown) - Stop your Player from falling into the dark void.
+- [SaltyNUI](https://github.com/EgoPvP/SaltyNUI) - Discourage Users without Temspeak running when using SaltyChat!
+- [sitdown](https://github.com/EgoPvP/sitdown) - Sitting made easy!
 
 ## Support
 If you need any kind of Support, feel free to open an Issue.
