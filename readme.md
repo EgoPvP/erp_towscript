@@ -55,10 +55,17 @@ Since i got many requests on "Does this Script generate lag / how is its CPU tim
 i checked it and it was as i expected it: 0,00ms!
 ![image|690x12](https://forum.cfx.re/uploads/default/original/4X/a/4/2/a425a7a66c017cb456e93db9b2e145e0f9d4bc47.png)
 
+## Other Scripts
+
+[erp_antifalldown](https://github.com/EgoPvP/erp_antifalldown) - Stop your Player from falling into the dark void.
+[SaltyNUI](https://github.com/EgoPvP/SaltyNUI) - Discourage Users without Temspeak running when using SaltyChat!
+[sitdown](https://github.com/EgoPvP/sitdown) - Sitting made easy!
+
 ## Support
 If you need any kind of Support, feel free to open an Issue.
 
 Discord - https://discord.gg/6jsHUVMh8G
+
 
 ## Donate
 If you like my work, you can Support me by donating to me
@@ -72,7 +79,7 @@ LTC - LMsnx3kVYAtKXJoERq51PZ367wihVmjxns <br>
 
 ## License
 
-erp_antifalldown - Stop your Player from falling below the map into the **dark** void.
+erp_towscript - Highly Customisable and top working Vehicle Towing Script for FiveM
 
 Copyright (C) 2021 - [EgoPvP.com](https://egopvp.com)
 
