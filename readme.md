@@ -10,14 +10,25 @@ Sorry guys, accidentally uploaded my test version isntead the one which was supp
 Thanks to [@0pax](https://github.com/0pax) for pointing this out!
 
 
+## Features
+
+Pretty obvious, attaching vehicles onto your Flatbed :slight_smile: 
+ Also:
+
+- Blacklisting vehicles from being towed
+- Job restriction (to a Job of your choice)
+- Usage via Command/Event (Command can be disabled)
+- Multiple Flatbeds with custom positioning for the towed vehicles
+- Multi-Language-Support 
+
 ## How to Install?
-- Download the latest Release of erp_towscript
-- Copy the Folder into your ressources/ folder
-- Add `ensure erp_towscript` to your server.cfg
-- Add your Flatbed Vehicles to the "config.lua" file and change the Offset properly. 
-- Change your prefered Language in the "config.lua" file
-- Change other stuff in the "config.lua" file to your preffered settings
-- Have fun using the Script :) 
+1. Download the latest Release of erp_towscript
+2. Copy the Folder into your ressources/ folder
+3. Add `ensure erp_towscript` to your server.cfg
+4. Add your Flatbed Vehicles to the "config.lua" file and change the Offset properly. 
+5. Change your prefered Language in the "config.lua" file
+6. Change other stuff in the "config.lua" file to your preffered settings
+7. Have fun using the Script :) 
 
 ## Dependencies
 
