@@ -10,7 +10,7 @@ ESX = nil
 local PlayerData = {}
 
 local isAllowedToTow = true
-local vehicleOnTowTruck = 0
+local vehicleOnTowTruck = nil
 
 local xoffset = 0.0
 local yoffset = 0.0
