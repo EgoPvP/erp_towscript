@@ -4,7 +4,7 @@ Highly Customisable and top working Vehicle Towing Script for FiveM
 This Script has many many Options for you to Change the behaivour of the Tow-Truck & does work in latest FiveM builds even after all the vehicle entity changes.
 
 
-** UPDATE AVAILABLE - NOW WORKING FOR SHURE! ** 
+** UPDATE AVAILABLE - NOW WORKING FOR SURE! ** 
 
 Sorry guys, accidentally uploaded my test version isntead the one which was supposed to go live.
 Thanks to [@0pax](https://github.com/0pax) for pointing this out!
@@ -23,7 +23,7 @@ Pretty obvious, attaching vehicles onto your Flatbed :slight_smile:
 
 ## How to Install?
 1. Download the latest Release of erp_towscript
-2. Copy the Folder into your ressources/ folder
+2. Copy the Folder into your resources/ folder
 3. Add `ensure erp_towscript` to your server.cfg
 4. Add your Flatbed Vehicles to the "config.lua" file and change the Offset properly. 
 5. Change your prefered Language in the "config.lua" file
@@ -36,7 +36,7 @@ Pretty obvious, attaching vehicles onto your Flatbed :slight_smile:
 
 ## Language Support
  - de - German | Done by me 
- - en - Englisch | Done by me 
+ - en - English | Done by me 
  - nl - Dutch | Thanks to [@Jaccosf](https://github.com/Jaccosf)
  - tr - Turkish | Thanks to @Wizley#3099
  - pt - Portuguese | Thanks to [@coentro](https://github.com/coentro)
@@ -49,7 +49,7 @@ Option | Description
 Locale | The Language of the messages send by the script
 JobRestriction | Whether or not only a certain ESX Job should be allowed to use the Tow-Function 
 NeededJob | The Job needed to use the Tow-Function 
-EnableCommand | Should the `/tow` Comand be enabled?
+EnableCommand | Should the `/tow` Command be enabled?
 VehicleRange  | How far away can a Car Stand behind the Flatbed to be recognized
 OnlyStoppedEngines | Should Vehicles with a running Engine be allowed to be Towed
 FlatbedDistance | The Distance a Vehicle should be teleported to when unloading it from the Flatbed
