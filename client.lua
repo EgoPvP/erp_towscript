@@ -72,7 +72,7 @@ AddEventHandler('erp_towscirpt:tow', function()
 
             if vehicleOnTowTruck == 0 or vehicleOnTowTruck == nil then
                 
-                    if targetVehicle ~= 0 and targetVehicle ~= nil then
+                    if targetVehicle ~= 0 then
                         if vehicle ~= targetVehicle then
                             if not isThisVehicleBlacklisted(targetVehicle) then
                                 if not IsEntityUpsidedown(targetVehicle) then
