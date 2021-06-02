@@ -70,7 +70,7 @@ AddEventHandler('erp_towscirpt:tow', function()
             local targetVehicle = getVehicleInDirection(coordA, coordB)
             
 
-            if vehicleOnTowTruck == 0 or vehicleOnTowTruck == nil then
+            if vehicleOnTowTruck == nil then
                 
                     if targetVehicle ~= 0 then
                         if vehicle ~= targetVehicle then
