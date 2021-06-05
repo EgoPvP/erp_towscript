@@ -163,6 +163,8 @@ AddEventHandler('erp_towscirpt:tow', function()
                 SetVehicleOnGroundProperly(vehicleOnTowTruck)
 
                 ESX.ShowNotification(_U('vehicle_detached'))
+
+                vehicleOnTowTruck = 0
             else 
                 ESX.ShowNotification(_U('not_a_towtruck'))
             end
