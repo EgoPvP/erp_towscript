@@ -69,6 +69,8 @@ i checked it and it was as i expected it: 0,00ms!
 ## Other Scripts
 
 - [erp_antifalldown](https://github.com/EgoPvP/erp_antifalldown) - Stop your Player from falling into the dark void.
+- [erp_saltycircle](https://github.com/EgoPvP/erp_saltycircle) - A basic Circle, visualizing your current voice range when using Saltychat
+- [erp_antiwhipping](https://github.com/EgoPvP/erp_antiwhipping) - Stop Players from hitting others when standing close.
 - [SaltyNUI](https://github.com/EgoPvP/SaltyNUI) - Discourage Users without Temspeak running when using SaltyChat!
 - [sitdown](https://github.com/EgoPvP/sitdown) - Sitting made easy!
 
