@@ -16,7 +16,7 @@ local xoffset = 0.0
 local yoffset = 0.0
 local zoffset = 0.0
 
-local playerped = PlayerPedId()
+local playerped
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent('esx:getSharedObject', function(obj)
@@ -27,12 +27,16 @@ Citizen.CreateThread(function()
     end
     PlayerData = ESX.GetPlayerData()
     calculateAccess()
+        
+       
 
     if Config.EnableCommand then
         RegisterCommand("tow", function()
             TriggerEvent("erp_towscirpt:tow")
         end, false)
     end
+        
+    playerped = PlayerPedId()
 end)
 
 RegisterNetEvent('esx:setJob')
