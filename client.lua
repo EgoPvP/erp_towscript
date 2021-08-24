@@ -73,6 +73,7 @@ AddEventHandler('erp_towscirpt:tow', function()
             local coordB = GetOffsetFromEntityInWorldCoords(playerped, 0.0, Config.VehicleRange, 0.0)
             local targetVehicle = getVehicleInDirection(coordA, coordB)
             
+            Wait(100)
 
             if vehicleOnTowTruck == 0 or vehicleOnTowTruck == nil then
                 
