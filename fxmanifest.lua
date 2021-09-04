@@ -13,5 +13,4 @@ client_script {
 
 dependencies {
 'es_extended'
-
 }
