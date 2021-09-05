@@ -26,10 +26,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(1)
     end
     PlayerData = ESX.GetPlayerData()
-    calculateAccess()
         
-       
-
     if Config.EnableCommand then
         RegisterCommand("tow", function()
             TriggerEvent("erp_towscirpt:tow")
@@ -37,6 +34,7 @@ Citizen.CreateThread(function()
     end
         
     playerped = PlayerPedId()
+    calculateAccess()
 end)
 
 RegisterNetEvent('esx:setJob')
