@@ -16,7 +16,7 @@ local xoffset = 0.0
 local yoffset = 0.0
 local zoffset = 0.0
 
-local playerped = PlayerPedId()
+local playerped
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent('esx:getSharedObject', function(obj)
@@ -26,13 +26,15 @@ Citizen.CreateThread(function()
         Citizen.Wait(1)
     end
     PlayerData = ESX.GetPlayerData()
-    calculateAccess()
-
+        
     if Config.EnableCommand then
         RegisterCommand("tow", function()
             TriggerEvent("erp_towscirpt:tow")
         end, false)
     end
+        
+    playerped = PlayerPedId()
+    calculateAccess()
 end)
 
 RegisterNetEvent('esx:setJob')
@@ -69,6 +71,7 @@ AddEventHandler('erp_towscirpt:tow', function()
             local coordB = GetOffsetFromEntityInWorldCoords(playerped, 0.0, Config.VehicleRange, 0.0)
             local targetVehicle = getVehicleInDirection(coordA, coordB)
             
+            Wait(100)
 
             if vehicleOnTowTruck == 0 or vehicleOnTowTruck == nil then
                 
