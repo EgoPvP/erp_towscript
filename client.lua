@@ -25,6 +25,7 @@ Citizen.CreateThread(function()
         end)
         Citizen.Wait(1)
     end
+    Wait(20000)
     PlayerData = ESX.GetPlayerData()
         
     if Config.EnableCommand then
