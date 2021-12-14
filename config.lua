@@ -1,5 +1,5 @@
 -- Made by ! 1« NoobKeks_TV »#1337 --
--- Support & more of my Work - https://discord.gg/6jsHUVMh8G --
+-- Support & more of my Work - https://discord.gg/qRc5Hbb --
 
 -- Copyright (C) 2021 - EgoPvP.com
 
